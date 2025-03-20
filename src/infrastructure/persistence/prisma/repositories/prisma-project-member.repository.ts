@@ -25,9 +25,9 @@ export class PrismaProjectMemberRepository implements ProjectMemberRepository {
     data: { user_ids: number[] },
   ): Promise<Partial<User> | Partial<User>[]> {
     const projectsMembers = await this.prisma.projects_members.createMany({
-      data: data.user_ids.map((userId) => ({
-        projectId: id,
-        userId: userId,
+      data: data.user_ids.map((user_id) => ({
+        project_id: id,
+        user_id,
       })),
     });
 
