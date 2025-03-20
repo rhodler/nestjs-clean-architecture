@@ -2,8 +2,11 @@ import { Module } from '@nestjs/common';
 
 import { PrismaService } from './prisma.service';
 
-import { ProjectRepository } from 'src/core/interfaces/repositories/project.repository.interface';
 import { PrismaProjectRepository } from './repositories/prisma-project.repository';
+import { PrismaProjectMemberRepository } from './repositories/prisma-project-member.repository';
+
+import { ProjectRepository } from 'src/core/repositories/project.repository';
+import { ProjectMemberRepository } from 'src/core/repositories/member-project.repository';
 
 @Module({
   imports: [], // set .env
@@ -13,7 +16,11 @@ import { PrismaProjectRepository } from './repositories/prisma-project.repositor
       provide: ProjectRepository,
       useClass: PrismaProjectRepository,
     },
+    {
+      provide: ProjectMemberRepository,
+      useClass: PrismaProjectMemberRepository,
+    },
   ],
-  exports: [PrismaService, ProjectRepository],
+  exports: [PrismaService, ProjectRepository, ProjectMemberRepository],
 })
 export class PrismaModule {}

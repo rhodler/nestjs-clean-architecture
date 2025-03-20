@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ProjectRepository } from '../interfaces/repositories/project.repository.interface';
+import { ProjectRepository } from '../repositories/project.repository';
 
 @Injectable()
 export class GetProjectUseCase {

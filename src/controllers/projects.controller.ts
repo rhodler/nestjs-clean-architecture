@@ -2,7 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { Projet } from 'src/core/domain/project/entities/project.entity';
 import { GetProjectUseCase } from 'src/core/usecases/get-project.usecase';
 
-@Controller('/projects')
+@Controller('/project')
 export class ProjetsController {
   constructor(private readonly getProjectUseCase: GetProjectUseCase) {}
 

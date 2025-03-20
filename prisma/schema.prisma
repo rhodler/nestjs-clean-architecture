@@ -14,14 +14,28 @@ generator client {
 }
 
 model users {
-  id         Int      @id @default(autoincrement())
-  first_name String
-  last_name  String
-  created_at DateTime @default(now())
+  id            Int                @id @default(autoincrement())
+  first_name    String
+  last_name     String
+  created_at    DateTime           @default(now())
+  ProjectMember projects_members[]
 }
 
 model projects {
+  id               Int                @id @default(autoincrement())
+  name             String
+  created_at       DateTime           @default(now())
+  projects_members projects_members[]
+}
+
+model projects_members {
   id         Int      @id @default(autoincrement())
-  name       String
+  user_id    Int      @map("user_id")
+  project_id Int
   created_at DateTime @default(now())
+
+  user    users    @relation(fields: [user_id], references: [id])
+  project projects @relation(fields: [project_id], references: [id])
+
+  @@unique([project_id, user_id]) // To ensure that a user can only be added once per project
 }

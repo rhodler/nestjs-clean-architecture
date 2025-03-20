@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { CoreModule } from './core/core.module';
-import { DatabaseModule } from './infrastructure/persistence/database.module';
+import { ControllerModule } from 'src/controllers/controller.module';
+import { DatabaseModule } from 'src/infrastructure/persistence/database.module';
 
 @Module({
   imports: [
-    CoreModule,
+    ControllerModule,
     DatabaseModule.register({ global: true, type: 'prisma' }),
   ],
 })
